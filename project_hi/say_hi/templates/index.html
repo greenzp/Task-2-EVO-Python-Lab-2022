@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block extra_head %}
+{{ form.media }}
+{% endblock %}
+
+
+{% block bootstrap4_title %}
+    Say hi
+{% endblock %}
+
+{% block content %}
+<h1>Say hi</h1><a class="btn btn-primary" href="{%url 'all_users'%}" role="button">Show all names</a>
+<div class="center">
+  {% crispy form %}
+</div>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+
+{% for message in messages %}
+<script>
+  alert('{{ message }}');
+</script>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

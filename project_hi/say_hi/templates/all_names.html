@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block bootstrap4_title %}
+    All names
+{% endblock %}
+
+{% load render_table from django_tables2 %}
+
+{%block content%}
+    <h1>Here we can see all names</h1><a class="btn btn-primary" href="{%url 'index'%}" role="button">Say Hi</a>
+
+    {% if filter %}
+        <form action="" method="get" class="form form-inline">
+            {% bootstrap_form filter.form layout='inline' %}
+            {% bootstrap_button 'filter' %}
+        </form>
+    {% endif %}
+
+    {% render_table table %}
+{%endblock%}
