@@ -5,8 +5,14 @@ To run locally
 
 1. Install and activate environment
 2. Install requirements using this command: `pip install -r requirements.txt`
-3. Run migrations: `python manage.py migrate`
-4. Run application: `python manage.py runserver`
+3. Create file `.env` with the following structure:
+
+```
+SECRET_KEY=yoursecret
+```
+
+4. Run migrations: `python manage.py migrate`
+5. Run application: `python manage.py runserver`
 
 Deployment
 ==========
