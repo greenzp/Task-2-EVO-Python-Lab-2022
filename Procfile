@@ -1,1 +1,1 @@
-web: gunicorn project_hi --log-file -
+web: gunicorn project_hi.wsgi --chdir ./project_hi --log-file -
