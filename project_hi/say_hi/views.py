@@ -5,6 +5,7 @@ from django_tables2 import Table
 from django_filters import rest_framework as filters
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
+from django.views.generic import TemplateView
 from django.contrib import messages
 
 
@@ -30,8 +31,12 @@ class FilteredListView(SingleTableMixin, FilterView):
     template_name = "all_names.html"
 
 
-def say_hi(request):
-    if request.method == "POST":
+class Say_Hi(TemplateView):
+    def get(self, request):
+        form = NameForm()
+        return render(request, 'index.html', {'form': form})
+
+    def post(self, request):
         form = NameForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
@@ -40,6 +45,3 @@ def say_hi(request):
         else:
             messages.add_message(request, messages.INFO, f'Вже бачилися, {form.data.get("name")}')
         return redirect('index')
-    else:
-        form = NameForm()
-    return render(request, 'index.html', {'form': form})
